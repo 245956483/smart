@@ -1,0 +1,9 @@
+<DataSource ID="DataView" inheritsFrom="VLayout" Constructor="DataView">
+    <fields>
+        <field name="operations" type="ServiceOperation" multiple="true"/>
+		<field name="definedJs" basic="true" type="string"/>
+    </fields>
+    <methods>
+        <method action="true" title="DataView Loaded" name="dataViewLoaded" />
+    </methods>
+</DataSource>

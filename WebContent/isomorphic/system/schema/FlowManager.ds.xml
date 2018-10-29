@@ -1,0 +1,21 @@
+ <DataSource ID="FlowManager" inheritsFrom="Layout" Constructor="FlowManager"
+             showLocalFieldsOnly="true" showSuperClassActions="true"
+             showSuperClassEvents="true">
+ 	 <fields>
+		<field name="workItem"  type="string" title="表单Id" basic="true" defaultValue="DynamicForm0" />
+		<field name="conditionField"  type="string" title="条件字段" basic="true"  />
+		<field name="isNotAddSuggest" type="boolean" title="不添加审批意见"  basic="true"/>
+		<field name="isNotRequireSuggest" type="boolean" title="审批意见不必填"  basic="true"/>
+		<field name="fileList" type="string" title="附件Id"  basic="true"/>
+		<field name="childListId" type="string" title="子表列表Id"  basic="true"/>
+		<field name="isNotRequireChildList" type="boolean" title="子列表不必填"  basic="true"/>
+		<field name="childForeignKeyField" title="子表外键字段"  type="string"  basic="true" />
+		<field name="closeWindow" type="string" title="关闭的窗口Id"  basic="true"/>
+		<field name="locationHref" type="string" title="提交后的跳转路径"  basic="true"/>
+     </fields>
+     <methods>
+         <method name="click">
+             <description>Fires when this button is clicked.</description>
+         </method>
+     </methods>
+ </DataSource>

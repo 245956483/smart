@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="GB2312" standalone="no"?>
+<DataSource ID="A1" dataFormat="iscServer" serverType="sql">
+    <fields>
+        <field name="name" title="姓名" type="text"/>
+        <field name="age" title="年龄" type="integer"/>
+        <field hidden="true" length="255" memo="系统创建,请勿修改、删除" name="id" primaryKey="true" title="主键" type="text"/>
+        <field hidden="true" length="255" memo="系统创建,请勿修改、删除" name="printWord" title="打印" type="text"/>
+        <field hidden="true" length="255" memo="系统创建,请勿修改、删除" name="createUser" title="创建人" type="text"/>
+        <field hidden="true" length="255" memo="系统创建,请勿修改、删除" name="createUserName" title="创建人姓名" type="text"/>
+        <field hidden="true" memo="系统创建,请勿修改、删除" name="createTime" title="创建时间" type="datetime"/>
+        <field hidden="true" memo="系统创建,请勿修改、删除" name="updateTime" title="修改时间" type="datetime"/>
+        <field length="255" name="address" title="地址" type="text"/>
+        <field length="255" name="memo" title="备注" type="text"/>
+    </fields>
+<serverObject bean="a1Service" lookupStyle="spring"/>
+</DataSource>

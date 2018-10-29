@@ -1,0 +1,13 @@
+ <DataSource ID="FlowForm" inheritsFrom="Layout" Constructor="FlowForm"
+             showLocalFieldsOnly="true" showSuperClassActions="true"
+             showSuperClassEvents="true">
+ 	   <fields>
+		<field name="asddd"  type="HTML"/>
+	    <field name="asd"  type="HTML"/>
+     </fields>
+     <methods>
+         <method name="click">
+             <description>Fires when this button is clicked.</description>
+         </method>
+     </methods>
+ </DataSource>

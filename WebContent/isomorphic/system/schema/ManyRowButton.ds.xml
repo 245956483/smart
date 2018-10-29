@@ -1,0 +1,10 @@
+<DataSource ID="ManyRowButton" inheritsFrom="StretchImgButton" Constructor="ManyRowButton">
+	 <fields>
+		<field name="masterDynamicFormId" title="主表单Id"  type="string"  basic="true" />
+		<field name="manyRowListId" title="子表列表Id"  type="string"  basic="true" />
+		<field name="childForeignKeyField" title="子表外键字段"  type="string"  basic="true" />
+     </fields>
+    <methods>
+        <method action="event" title="Click" name="click" basic="true" />
+    </methods>
+</DataSource>

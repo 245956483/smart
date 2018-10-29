@@ -1,0 +1,350 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://java.sun.com/xml/ns/javaee" xmlns:jsp="http://java.sun.com/xml/ns/javaee/jsp" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.5">
+     
+  <listener>
+	<listener-class>
+		com.isomorphic.listener.InitListener
+	</listener-class>
+  </listener> 
+  <listener>
+    <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+  </listener>   
+  
+    <context-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>/WEB-INF/applicationContext.xml</param-value>
+	</context-param> 
+	<!--    
+    <servlet>
+        <servlet-name>context</servlet-name>
+        <servlet-class>org.springframework.web.context.ContextLoaderServlet</servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+  -->
+    <filter>
+        <filter-name>CompressionFilter</filter-name>
+        <filter-class>com.isomorphic.servlet.CompressionFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>CompressionFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+    <!-- //<FileLoader -->
+    
+     <servlet>
+        <servlet-name>PrintWordServlet</servlet-name>
+        <servlet-class>com.cserver.saas.system.smartclient.servlet.PrintWordServlet</servlet-class>
+  	</servlet>
+    <servlet-mapping>
+	    <servlet-name>PrintWordServlet</servlet-name>
+	    <url-pattern>/tools/visualBuilder/workspace/PrintWordServlet</url-pattern>
+	    <url-pattern>/PrintWordServlet</url-pattern>
+	 </servlet-mapping>
+
+    <!-- Apache AXIS RPC servlet -->
+    <servlet>
+        <servlet-name>AxisServlet</servlet-name>
+        <servlet-class>org.apache.axis.transport.http.AxisServlet</servlet-class>
+    </servlet>
+
+    <!-- The IDACall servlet handles all Built-in DataSource operations -->
+    <servlet>
+        <servlet-name>IDACall</servlet-name>
+        <servlet-class>com.isomorphic.servlet.IDACall</servlet-class>
+    </servlet>
+<!--
+    <servlet>
+        <servlet-name>StockQuotesServlet</servlet-name>
+        <servlet-class>com.isomorphic.examples.StockQuotesServlet</servlet-class>
+    </servlet> 
+
+     The RESTHandler servlet handles SmartClient Server DataSource operations issued by 
+         REST clients - it's like IDACall, but for the REST protocol.  Typically,  the clients
+         of this servlet would not be ordinary SmartClient/SmartGWT applications (though they 
+         could be), but other client technologies that need to access SmartClient DataSource 
+         operations as reusable services -->
+    <servlet>
+        <servlet-name>RESTHandler</servlet-name>
+        <servlet-class>com.isomorphic.servlet.RESTHandler</servlet-class>
+    </servlet>
+
+    <!-- The DataSourceLoader servlet returns Javascript representations of the dataSources whose
+         ID's are passed to it - it is an alternative to using the <loadDS> JSP tag -->
+    <servlet>
+        <servlet-name>DataSourceLoader</servlet-name>
+        <servlet-class>com.isomorphic.servlet.DataSourceLoader</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>FeatureExplorerRPC</servlet-name>
+        <servlet-class>com.isomorphic.servlet.FeatureExplorerRPC</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>XMLSelect</servlet-name>
+        <servlet-class>com.isomorphic.xml.XMLSelectServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>HttpProxy</servlet-name>
+        <servlet-class>com.isomorphic.servlet.HttpProxyServlet</servlet-class>
+    </servlet>
+
+    <!-- The FileDownload servlet downloads static files, like a webserver -->
+    <servlet>
+        <servlet-name>FileDownload</servlet-name>
+        <servlet-class>com.isomorphic.servlet.FileDownload</servlet-class>
+    </servlet>
+
+    <!-- //>RealtimeMessaging -->
+    <!-- The MessagingServlet is used by realtime messaging -->
+	<servlet>
+        <servlet-name>MessagingServlet</servlet-name>
+        <servlet-class>com.isomorphic.messaging.MessagingServlet</servlet-class>
+    </servlet>
+    <!-- //<RealtimeMessaging -->
+    
+
+    <!-- //>FileLoader -->
+    <!-- The FileAssembly servlet is used for downloading dynamically assembled files -->
+    <servlet>
+        <servlet-name>FileAssembly</servlet-name>
+        <servlet-class>com.isomorphic.servlet.FileAssembly</servlet-class>
+    </servlet>
+    <!-- //<FileLoader -->
+
+	<!-- ISC init: initializes ISC framework 
+    <servlet>
+        <servlet-name>Init</servlet-name>
+        <servlet-class>com.isomorphic.base.Init</servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+	  -->
+
+    <!-- this servlet cleanly shuts down the HSQL database whenever the container is reloaded.  If
+         you want container reloading to work reliably with HSQL, this servlet must be enabled 
+    <servlet>
+        <servlet-name>HSQLShutdown</servlet-name>
+        <servlet-class>com.isomorphic.sql.HSQLShutdown</servlet-class>
+        <load-on-startup>3</load-on-startup>
+    </servlet>
+-->
+    <!-- streams a file to the browser with the "text/plain" mime type for in-browser viewing -->
+    <!-- IMPORTANT SECURITY NOTE: This servlet allows the end user to inspect the source version
+         of arbitrary content under your webRoot.  Do not deploy this servlet with your application.
+    -->
+    <servlet>
+        <servlet-name>SourceViewer</servlet-name>
+        <servlet-class>com.isomorphic.servlet.SourceViewer</servlet-class>
+        <init-param>
+            <param-name>allowedExtensions</param-name>
+            <param-value>*</param-value>
+        </init-param>
+    </servlet>
+
+    <!-- Standard Action Servlet Configuration (with debugging) -->
+    <servlet>
+        <servlet-name>action</servlet-name>
+        <servlet-class>org.apache.struts.action.ActionServlet</servlet-class>
+        <init-param>
+            <param-name>config</param-name>
+            <param-value>/WEB-INF/struts-config.xml</param-value>
+        </init-param>
+        <init-param>
+            <param-name>config/examples/struts/forms</param-name>
+            <param-value>/WEB-INF/form-examples-config.xml</param-value>
+        </init-param>   
+        <init-param>
+            <param-name>debug</param-name>
+            <param-value>2</param-value>
+        </init-param>
+        <init-param>
+            <param-name>detail</param-name>
+            <param-value>2</param-value>
+        </init-param>
+        <load-on-startup>2</load-on-startup>
+    </servlet>
+
+    <!-- Standard Struts Action Servlet Mapping -->
+    <servlet-mapping>
+        <servlet-name>action</servlet-name>
+        <url-pattern>*.do</url-pattern>
+    </servlet-mapping>
+
+    <!-- SOAP RPC requests -->
+    <servlet-mapping>
+        <servlet-name>AxisServlet</servlet-name>
+        <url-pattern>/isomorphic/services/1.0/*</url-pattern>
+    </servlet-mapping>
+
+    <!-- RPCManager uses this URL by default for Built-in DataSource operations -->
+    <servlet-mapping>
+        <servlet-name>IDACall</servlet-name>
+        <url-pattern>/isomorphic/IDACall/*</url-pattern>
+    </servlet-mapping>
+
+    <!-- Built-in DataSource operations backcompat -->
+    <servlet-mapping>
+        <servlet-name>IDACall</servlet-name>
+        <url-pattern>/isomorphic/IDACall.aspx/*</url-pattern>
+    </servlet-mapping>
+
+    <!-- Duplicate the servlet mapping for IDACall to inside examples/secureApp, so that
+         its access may be authenticated. For a production server, the "main" IDACall
+         mapping is removed, while this secured mapping remains. -->
+    <servlet-mapping>
+      <servlet-name>IDACall</servlet-name>
+      <url-pattern>/examples/secureApp/IDACall/*</url-pattern>
+    </servlet-mapping>
+
+    <!-- REST connector for the SmartClient Server - like IDACall, but for REST requests -->
+    <servlet-mapping>
+        <servlet-name>RESTHandler</servlet-name>
+        <url-pattern>/isomorphic/RESTHandler/*</url-pattern>
+    </servlet-mapping>
+<!-- 
+    <servlet-mapping>
+        <servlet-name>StockQuotesServlet</servlet-name>
+        <url-pattern>/examples/StockQuotes/*</url-pattern>
+    </servlet-mapping>
+ -->
+    <!-- DataSourceLoader requests -->
+    <servlet-mapping>
+        <servlet-name>DataSourceLoader</servlet-name>
+        <url-pattern>/isomorphic/DataSourceLoader</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>FeatureExplorerRPC</servlet-name>
+        <url-pattern>/isomorphic/FeatureExplorerRPC/*</url-pattern>
+    </servlet-mapping>
+
+    <!-- //>RealtimeMessaging -->
+    <!-- Messaging uses this URL by default -->
+    <servlet-mapping>
+        <servlet-name>MessagingServlet</servlet-name>
+        <url-pattern>/isomorphic/messaging/*</url-pattern>
+    </servlet-mapping>
+    <!-- //<RealtimeMessaging -->
+
+    <servlet-mapping>
+        <servlet-name>HttpProxy</servlet-name>
+        <url-pattern>/isomorphic/HttpProxy/*</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>XMLSelect</servlet-name>
+        <url-pattern>/isomorphic/XMLSelect/*</url-pattern>
+    </servlet-mapping>
+
+    <!-- streams a file to the browser with the "text/plain" mime type for in-browser viewing -->
+    <!-- IMPORTANT SECURITY NOTE: This servlet allows the end user to inspect the source version
+         of arbitrary content under your webRoot.  Do not deploy this servlet with your application.
+  
+    <servlet-mapping>
+        <servlet-name>SourceViewer</servlet-name>
+        <url-pattern>/isomorphic/Source.Viewer/*</url-pattern>
+    </servlet-mapping>
+  -->
+    <!-- Use FileDownload servlet to download all static content that's part of the skin, such as
+         image files, so we can set Expires headers and other cache control directives.  In a
+         production deployment, you'd want to use a webserver such as Apache to do this.  
+    -->
+    <servlet-mapping>
+        <servlet-name>FileDownload</servlet-name>
+        <url-pattern>/isomorphic/skins/*</url-pattern>
+    </servlet-mapping>    
+    <servlet-mapping>
+        <servlet-name>FileDownload</servlet-name>
+        <url-pattern>/isomorphic/system/reference/exampleImages/*</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>FileDownload</servlet-name>
+        <url-pattern>/isomorphic/system/reference/skin/*</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>FileDownload</servlet-name>
+        <url-pattern>/isomorphic/system/reference/referenceDocs.js</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>FileDownload</servlet-name>
+        <url-pattern>/isomorphic/system/reference/referenceDocs.xml</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>FileDownload</servlet-name>
+        <url-pattern>/isomorphic/system/reference/exampleTree.js</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>FileDownload</servlet-name>
+        <url-pattern>/isomorphic/system/reference/docTree.js</url-pattern>
+    </servlet-mapping>
+        
+  <!-- self definition listener for SC visualBuilder reload resource(jsp、xml、ds)  -->
+    <session-config>
+        <session-timeout>30</session-timeout>
+    </session-config>
+
+    <jsp-config>
+        <!-- Isomorphic JSP tags -->
+        <taglib>
+            <taglib-uri>isomorphic</taglib-uri> 
+            <taglib-location>/WEB-INF/iscTaglib.xml</taglib-location> 
+        </taglib>
+
+        <!-- Struts Tag Library Descriptors -->
+        <taglib>
+            <taglib-uri>/tags/struts-bean</taglib-uri>
+            <taglib-location>/WEB-INF/struts-bean.tld</taglib-location>
+        </taglib>
+        <taglib>
+            <taglib-uri>/tags/struts-html</taglib-uri>
+            <taglib-location>/WEB-INF/struts-html.tld</taglib-location>
+        </taglib>
+        <taglib>
+            <taglib-uri>/tags/struts-logic</taglib-uri>
+            <taglib-location>/WEB-INF/struts-logic.tld</taglib-location>
+        </taglib>
+        <taglib>
+            <taglib-uri>/tags/struts-nested</taglib-uri>
+            <taglib-location>/WEB-INF/struts-nested.tld</taglib-location>
+        </taglib>
+        <taglib>
+            <taglib-uri>/tags/struts-tiles</taglib-uri>
+            <taglib-location>/WEB-INF/struts-tiles.tld</taglib-location>
+        </taglib>
+
+        <!-- Serve *.isc files with iscHeader/iscFooter -->
+        <jsp-property-group>
+            <url-pattern>*.isc</url-pattern>
+            <el-ignored>true</el-ignored>
+            <include-prelude>/shared/jsp/iscHeader.jsp</include-prelude>
+            <include-coda>/shared/jsp/iscFooter.jsp</include-coda>
+        </jsp-property-group>
+        <!-- Process *.rpc files as RPC requests - puts you in an iterator over current RPC requests -->
+        <jsp-property-group>
+            <url-pattern>*.rpc</url-pattern>
+            <el-ignored>true</el-ignored>
+            <include-prelude>/shared/jsp/rpcHeader.jsp</include-prelude>
+            <include-coda>/shared/jsp/rpcFooter.jsp</include-coda>
+        </jsp-property-group>
+        <jsp-property-group>
+            <url-pattern>*.jsp</url-pattern>
+            <el-ignored>true</el-ignored>
+        </jsp-property-group>
+    </jsp-config>
+
+    <mime-mapping>
+        <extension>wsdl</extension>
+        <mime-type>text/xml</mime-type>
+    </mime-mapping>
+
+    <mime-mapping>
+        <extension>csv</extension>
+        <mime-type>text/csv</mime-type>
+    </mime-mapping>
+
+    <mime-mapping>
+        <extension>manifest</extension>
+        <mime-type>text/cache-manifest</mime-type>
+    </mime-mapping>
+</web-app>

@@ -1,0 +1,11 @@
+<Application>
+    <rpcBindings>
+        <ServerObject ID="deleteOperation"  lookupStyle="spring"  bean="deleteOperationDMI">
+            <visibleMethods>
+                <method name="deleteModuleById"/>
+                <method name="deleteFormById"/>
+                
+            </visibleMethods>
+        </ServerObject>
+    </rpcBindings>
+</Application>

@@ -1,0 +1,11 @@
+<Application>
+    <rpcBindings>
+        <ServerObject ID="ScForm" lookupStyle="spring"  bean="ScFromSavingDMI">
+            <visibleMethods>
+                <method name="searchDataBaseUserName"/>
+                <method name="produceCode"/>
+                <method name="isExistDs"/>
+            </visibleMethods>
+        </ServerObject>
+    </rpcBindings>
+</Application>

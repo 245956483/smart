@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE struts-config PUBLIC
+          "-//Apache Software Foundation//DTD Struts Configuration 1.2//EN"
+          "http://struts.apache.org/dtds/struts-config_1_2.dtd">
+<struts-config>
+  <!--============================================== Form Bean Definitions  -->
+  <form-beans>
+    <!-- example form: shows how validation, types are handled -->
+    <form-bean name="exampleForm" type="com.isomorphic.examples.struts.ExampleForm" />
+    <!-- used to switch the locale -->
+    <form-bean name="localeForm" type="org.apache.struts.action.DynaActionForm">
+      <form-property name="language" type="java.lang.String" />
+      <form-property name="country" type="java.lang.String" />
+    </form-bean>
+  </form-beans>
+  <!-- ========================================= Action Mapping Definitions -->
+  <action-mappings>
+    <action path="/welcome" forward="/welcome.jsp" />
+
+    <!-- Change Locale Action -->
+    <action path="/locale" type="com.isomorphic.examples.struts.LocaleAction" 
+            name="localeForm" scope="request">
+      <forward name="success" path="/welcome.do" />
+    </action>
+
+    <!-- Example 1 -->
+    <!-- The view a plain html form.  Validation errors are displayed above the form. Validation
+         check causes page transition. -->
+    <action path="/plain_form" forward="/plain_form.jsp" />
+    <action path="/plain_form_submit" type="com.isomorphic.examples.struts.ExampleFormAction" 
+            name="exampleForm" scope="request" validate="true" input="input">
+      <forward name="input" path="/plain_form.do" />
+      <forward name="success" path="/welcome.do" />
+    </action>
+
+    <!-- Example 2 -->
+    <!-- The view is a SmartClient DynamicForm.  Validation errors are displayed inline.  Validation
+         check causes page transition.  -->
+    <action path="/dynamic_form" forward="/dynamic_form.jsp" />
+    <action path="/dynamic_form_submit" type="com.isomorphic.examples.struts.ExampleFormAction"
+            name="exampleForm" scope="request" validate="true" input="input">
+      <forward name="input" path="/dynamic_form.do" />
+      <forward name="success" path="/welcome.do" />
+    </action>
+
+    <!-- Example 3 -->
+    <!-- The view is a SmartClient DynamicForm.  Validation errors are displayed inline.  Validation
+         checks do not cause a page transition when they fail, but do when they succeed. -->
+
+    <!-- To do the transition-less validation, you need just one validation failure action for
+         any number of forms that you wish to validate in this manner.  The actual code here simply
+         gets the current validation errors from the request and returns them via an RPCResponse to
+         the browser to be displayed inline in the DynamicForm.  -->
+    <action path="/rpc_validation_failure" type="com.isomorphic.struts.ValidationFailureAction"/>
+
+    <!-- And you need one of these validation actions for each set of server-side validators you
+         wish to run.  For example, if this form is used in more than one action, you still need
+         just this one validation action - just set the validationURL on all the forms of
+         this type to this action -->
+    <action path="/exampleForm_validate" type="com.isomorphic.struts.ValidationAction"
+            name="exampleForm" scope="request" validate="true" input="input">
+        <forward name="input" path="/rpc_validation_failure.do"/>
+    </action>
+
+    <!-- Definition for the transitionless validation -->
+    <action path="/dynamic_form_rpc" forward="/dynamic_form_rpc.jsp" />
+    <action path="/dynamic_form_rpc_submit" type="com.isomorphic.examples.struts.ExampleFormAction" 
+            name="registrationForm" scope="request" validate="true" input="input">
+      <forward name="input" path="/dynamic_form_rpc.do" />
+      <forward name="success" path="/welcome.do" />
+    </action>
+
+  </action-mappings>
+
+  <!-- ============================================= Controller Definition  -->
+  <controller inputForward="true" />
+  <!-- ===================================== Message Resources Definitions  -->
+  <message-resources parameter="MessageResources" />
+  <!-- ============================================ Plug Ins Configuration  -->
+  <plug-in className="org.apache.struts.validator.ValidatorPlugIn">
+    <set-property property="pathnames" value="/WEB-INF/validator-rules.xml,/WEB-INF/validation.xml" />
+    <set-property property="stopOnFirstError" value="false" />
+  </plug-in>
+</struts-config>

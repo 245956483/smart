@@ -1,0 +1,12 @@
+<DataSource ID="EButton" inheritsFrom="Button" Constructor="EButton"
+             showLocalFieldsOnly="true" showSuperClassActions="false"
+             showSuperClassEvents="false">
+ 	   <fields>
+         <field name="title"  type="HTML"/>
+     </fields>
+     <methods>
+         <method name="click">
+             <description>Fires when this button is clicked.</description>
+         </method>
+     </methods>
+ </DataSource>

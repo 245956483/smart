@@ -1,0 +1,16 @@
+<DataSource	ID="MasterTable" inheritsFrom="CanvasItem" Constructor="MasterTable">
+ 	 <fields>
+		<field name="masterDynamicFormId" title="主表单Id"  type="string"  basic="true" />
+		<field name="childDynamicFormId" title="子表单/子数据源Id"  type="string"  basic="true" />
+		<field name="childForeignKeyField" title="子表外键字段"  type="string"  basic="true" />
+		<field name="isAllAdd" title="主子表是否一起提交"  type="boolean"  basic="true" />
+		<field name="closeWindow" title="关闭的窗口Id"  type="string"  basic="true" />
+		<field name="childIsListGrid" title="子表是否是列表显示"  type="boolean"  basic="true" />
+		<field name="childListGridId" title="列表Id"  type="string"  basic="true" />	
+     </fields>
+     <methods>
+         <method name="click">
+             <description>Fires when this button is clicked.</description>
+         </method>
+     </methods>
+ </DataSource>

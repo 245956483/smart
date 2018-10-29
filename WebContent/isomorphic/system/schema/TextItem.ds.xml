@@ -1,0 +1,14 @@
+<DataSource ID="TextItem" inheritsFrom="FormItem" Constructor="TextItem">
+	<fields>
+		<field name="isLoginUser" type="boolean" title="登录人" basic="true"/>
+		<field name="isLoginUserDep" type="boolean" title="登录人部门" basic="true"/>
+		<field name="isSearchUser" title="选人组件" basic="true" type="boolean"/>
+		<field name="isChildDep" title="当前部门子部门" type="boolean" basic="true"/>
+		<field name="displayModel" title="多选" basic="true" type="boolean"/>
+		<field name="role" type="boolean" title="显示角色" basic="true"/>
+		<field name="length" type="positiveInteger" title="Length"/>
+	</fields>
+	
+    <substituteClasses>BlurbItem, StaticTextItem, TextAreaItem</substituteClasses>
+	
+</DataSource>

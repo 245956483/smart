@@ -1,0 +1,11 @@
+<DataSource	ID="PageTools" inheritsFrom="Layout" Constructor="PageTools">
+ 	 <fields>
+		<field name="grid" title="分页列表"  type="string"  basic="true" />
+     </fields>
+     <methods>
+		 <method title="过滤数据" name="pageFilterData" action="true"/>
+         <method name="click">
+             <description>Fires when this button is clicked.</description>
+         </method>
+     </methods>
+ </DataSource>

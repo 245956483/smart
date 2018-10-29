@@ -1,0 +1,18 @@
+ <DataSource ID="FileManager" inheritsFrom="Layout" Constructor="FileManager"
+             showLocalFieldsOnly="true" showSuperClassActions="true"
+             showSuperClassEvents="true">
+ 	 <fields>
+		<field name="dynamicFormId"  type="string" title="表单Id"  basic="true" />
+		<field name="fileType" type="string" basic="true"  title="附件类型"/>
+		<field name="isMustUpload" type="boolean" basic="true"  title="必须上传"/>
+		<field name="isNotFileUpload" type="boolean" basic="true"  title="不显示上传按钮"/>
+		<field name="isNotDynamicFormId" type="boolean" basic="true"  title="忽略表单Id(详情页面使用)"/>
+     </fields>
+     <methods>
+         <method name="click">
+             <description>Fires when this button is clicked.</description>
+         </method>
+		 <method action="true" title="查询附件" name="fileFetchData" basic="true"/>
+		 <method action="true" title="清空附件" name="fileClear" basic="true"/>
+     </methods>
+ </DataSource>

@@ -1,0 +1,12 @@
+<DataSource ID="FlowHistorySuggest" inheritsFrom="Layout" Constructor="FlowHistorySuggest"
+		 showLocalFieldsOnly="true" showSuperClassActions="true"
+		 showSuperClassEvents="true">
+ 	 <fields>
+     </fields>
+     <methods>
+		 <method action="true" title="查询审批意见" name="searchSuggest" basic="true"/>
+         <method name="click">
+             <description>Fires when this button is clicked.</description>
+         </method>
+     </methods>
+ </DataSource>
